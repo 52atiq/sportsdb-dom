@@ -1,4 +1,6 @@
 const allPlayers = () => {
+    document.getElementById('player-container').innerHTML ='';
+    document.getElementById('spinner').style.display ='block'
     const searchValue = document.getElementById('search-box').value;
     console.log(searchValue);
     const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${searchValue}`
@@ -7,11 +9,17 @@ const allPlayers = () => {
     fetch(url)
     .then(res => res.json())
     .then(data=> showPlayerDetails(data.player));
+
+    document.getElementById('spinner').style.display ='none'
 }
 
 const showPlayerDetails = (players) => {
-    for(const player of players){
+    // if(players){
+    //     document.getElementById('spinner').style.display ='none'    // try it yourself
+    // }
 
+
+    for(const player of players){
         console.log(player);
         const playerContainer = document.getElementById('player-container');
 
@@ -42,11 +50,22 @@ const details=(id) =>{
 
 // for right side 
 const setDetails = (info)=>{
+    console.log(info.strGender);
+
+    if(info.strGender == "Male"){
+        document.getElementById('male').style.display ='block';
+        document.getElementById('female').style.display ='none';
+    } else{
+        document.getElementById('male').style.display ='none';
+        document.getElementById('female').style.display ='block';
+
+    } 
+
     document.getElementById('details-container').innerHTML =`
     <div>
     <img src="" alt="">
     <h1> Name: ${info.strPlayer} </h1>
     </div>
     `;
-console.log(info);
+// console.log(info);
 }
