@@ -8,9 +8,19 @@ const allPlayers = () => {
 
     fetch(url)
     .then(res => res.json())
-    .then(data=> showPlayerDetails(data.player));
+    // .then(data=> showPlayerDetails(data.player));
+    .then((data )=> {
+      console.log(data.player == null)
+      if(data.player == null){
+        document.getElementById('spinner').style.display ='block'
+      }
+      else{
+        showPlayerDetails(data.player);
+        document.getElementById('spinner').style.display ='none'
+      }
+    })
 
-    document.getElementById('spinner').style.display ='none'
+    
 }
 
 const showPlayerDetails = (players) => {
