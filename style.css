@@ -8,4 +8,8 @@
 }
 #spinner{
     display: none;
+    width:200px;
+    height: 200px;
+   margin-left: 300px;
+   border-radius: 400px;
 }
